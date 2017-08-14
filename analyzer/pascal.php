@@ -6,7 +6,7 @@ class PascalLexer extends Lexer {
     public $token_classes = array(
 		// = < > <> <= =< >= =>
 		//Separated using "|"
-        'Operador Relacional'          => array( 'pattern' => '/^(=|\<|\>|\<\>|\<=|=\<|\>=|=\>)/', 'delimiter' => true ),
+		'Operador Relacional'          => array( 'pattern' => '/^(=|\<|\>|\<\>|\<=|=\<|\>=|=\>)/', 'delimiter' => true ),
 		
 		//Identifiers
 		'Identificador'          => array( 'pattern' => '/^([a-zA-Z_][a-zA-Z0-9_]*)/' ),
@@ -24,20 +24,20 @@ class PascalLexer extends Lexer {
 		'Atribuição'      => array( 'pattern' => '/^(:=)/', 'delimiter' => true ),
 		
 		//Additive + =
-        'Operador Aditivo'        => array( 'pattern' => '/^(\+|\-)/', 'delimiter' => true ),
+		'Operador Aditivo'        => array( 'pattern' => '/^(\+|\-)/', 'delimiter' => true ),
 		
 		//Multiplicative * /
-        'Operador Multiplicativo'    => array( 'pattern' => '/^(\*|\/)/', 'delimiter' => true ),
-        
-        //Others
-        'LBRACKET'    => array( 'pattern' => '/^(\[)/', 'delimiter' => true ),                             // '['
-        'RBRACKET'    => array( 'pattern' => '/^(\])/', 'delimiter' => true ),                             // ']'
-        'CIRCUMFLEX'  => array( 'pattern' => '/^(\^)/', 'delimiter' => true ),                             // '^'
-        'DOUBELDOT'   => array( 'pattern' => '/^(\.\.)/', 'delimiter' => true ),                           // '..'
-        'HEXNUMBER'   => array( 'pattern' => '/^(\$[0-9a-fA-F]+)/' ),                                      // hexadecimal number
-        'STRING'      => array( 'pattern' => '/^(\'(.*?)\')/' ),                                           // string
-        'COMMENT'     => array( 'pattern' => '/^((\{|\(\*)(.*?)(\}|\*\)))/', 'invisible' => true ),        // comment
-        'BLANK'       => array( 'pattern' => '/^([\s\t])/', 'invisible' => true, 'delimiter' => true ),    // space or \t
+		'Operador Multiplicativo'    => array( 'pattern' => '/^(\*|\/)/', 'delimiter' => true ),
+		
+		//Others
+		'LBRACKET'    => array( 'pattern' => '/^(\[)/', 'delimiter' => true ),                             // '['
+		'RBRACKET'    => array( 'pattern' => '/^(\])/', 'delimiter' => true ),                             // ']'
+		'CIRCUMFLEX'  => array( 'pattern' => '/^(\^)/', 'delimiter' => true ),                             // '^'
+		'DOUBELDOT'   => array( 'pattern' => '/^(\.\.)/', 'delimiter' => true ),                           // '..'
+		'HEXNUMBER'   => array( 'pattern' => '/^(\$[0-9a-fA-F]+)/' ),                                      // hexadecimal number
+		'STRING'      => array( 'pattern' => '/^(\'(.*?)\')/' ),                                           // string
+		'COMMENT'     => array( 'pattern' => '/^((\{|\(\*)(.*?)(\}|\*\)))/', 'invisible' => true ),        // comment
+		'BLANK'       => array( 'pattern' => '/^([\s\t])/', 'invisible' => true, 'delimiter' => true ),    // space or \t
     );
 
     public $reserved = array('and', 'array', 'begin', 'case', 'const',
