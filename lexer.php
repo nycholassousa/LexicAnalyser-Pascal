@@ -33,7 +33,7 @@ class Lexer {
                     if ($lexeme['delimiter'] === true) {
                         $prev_delimiter = true;
                         // put info about visible token-delimiter to the result
-                        if ($lexeme['invisible'] !== true) { // if invisible === true, do nothing.
+                        if ($lexeme['visible'] !== false) {
                             $this->result[] = array(
                                 'row' => $line_number,
                                 'col' => $offset,
@@ -49,7 +49,7 @@ class Lexer {
                         // AND prev lexeme is delimiter or current lexeme is the first in the line
                         if(($next_lexeme['delimiter'] === true || $offset + strlen($lexeme['value']) === $line_length) && ($prev_delimiter === true || $offset === 0)) {
                             // put info about visible token to the result
-                            if ($lexeme['invisible'] !== true) {
+                            if ($lexeme['visible'] !== false) {
                                 $this->result[] = array(
                                     'row' => $line_number,
                                     'col' => $offset,
@@ -122,7 +122,7 @@ class Lexer {
         $result = array(
             'value' => '',
             'type' => '',
-            'invisible' => false,
+            'visible' => true,
             'delimiter' => false
         );
 
@@ -134,7 +134,7 @@ class Lexer {
                 if (strlen($matches[1]) > strlen($result['value'])) {
                     $result['value'] = $matches[1];
                     $result['type'] = $type;
-                    $result['invisible'] = $property['invisible'];
+                    $result['visible'] = $property['visible'];
                     $result['delimiter'] = $property['delimiter'];
                 }
             }
@@ -146,10 +146,16 @@ class Lexer {
             // else if reserved words list is specified,
             // check whether the found token is reserved
             if (isset($this->reserved)) {
+				$multiplicative = "and";
                 foreach ($this->reserved as $type => $word) {
-                    if (strcasecmp($result['value'], $word) == 0) {
-                            $result['type'] = 'Palavra Reservada';
+					//if value == and (multiplicative operator), show the type
+                    if (strcasecmp($result['value'], "and") == 0) {
+						$result['type'] = $type;
                     }
+					//if value == reserved word and != "and", show "Reserved Word"
+					if ((strcasecmp($result['value'], $word) == 0) and (strcasecmp($result['value'], "and")) != 0) {
+						$result['type'] = 'Palavra Reservada';
+					}
                 }
             }
         }

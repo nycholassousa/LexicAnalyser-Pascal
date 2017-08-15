@@ -30,23 +30,24 @@ class PascalLexer extends Lexer {
         'Operador Multiplicativo'    => array( 'pattern' => '/^(\*|\/)/', 'delimiter' => true ),
         
 		//Comment { anything }
-		'Comentário' => array( 'pattern' => '/^((\{|\(\*)(.*?)(\}|\*\)))/', 'invisible' => true ),
+		'Comentário' => array( 'pattern' => '/^((\{|\(\*)(.*?)(\}|\*\)))/', 'visible' => false ),
 		
         //Others
-        'LBRACKET'    => array( 'pattern' => '/^(\[)/', 'delimiter' => true ),                             // '['
-        'RBRACKET'    => array( 'pattern' => '/^(\])/', 'delimiter' => true ),                             // ']'
-        'CIRCUMFLEX'  => array( 'pattern' => '/^(\^)/', 'delimiter' => true ),                             // '^'
-        'DOUBELDOT'   => array( 'pattern' => '/^(\.\.)/', 'delimiter' => true ),                           // '..'
-        'HEXNUMBER'   => array( 'pattern' => '/^(\$[0-9a-fA-F]+)/' ),                                      // hexadecimal number
-        'STRING'      => array( 'pattern' => '/^(\'(.*?)\')/' ),                                           // string
-        'BLANK'       => array( 'pattern' => '/^([\s\t])/', 'invisible' => true, 'delimiter' => true ),    // space or \t
+        'Colchete'    => array( 'pattern' => '/^(\[ | \])/', 'delimiter' => true ),                             // '['
+        'Potenciação'  => array( 'pattern' => '/^(\^)/', 'delimiter' => true ),                             // '^'
+        'Duplo Ponto'   => array( 'pattern' => '/^(\.\.)/', 'delimiter' => true ),                           // '..'
+        'Hexadecimal'   => array( 'pattern' => '/^(\$[0-9a-fA-F]+)/' ),                                      // hexadecimal number
+        'String'      => array( 'pattern' => '/^(\'(.*?)\')/' ),                                           // string
+        'Blank'       => array( 'pattern' => '/^([\s\t])/', 'visible' => false, 'delimiter' => true ),    // space or \t
     );
 
-    public $reserved = array('and', 'array', 'begin', 'case', 'const',
+    public $reserved = array('array', 'begin', 'case', 'const',
 		'div', 'do', 'downto', 'else', 'end', 'file', 'for', 'function', 
 		'goto', 'if', 'in', 'label', 'mod', 'nil', 'new', 'not', 'of', 
 		'packed', 'procedure', 'program', 'record', 'repeat', 'set', 'then', 
 		'to', 'type', 'until', 'var', 'while', 'with',
+		
+		"Operador Multiplicativo" => 'and', 
     );
 
 }
